@@ -20,7 +20,7 @@
     </header>
     <main>
         <section>
-            <h2>Bienvenido</h2>
+            <h2>Bienvenido 1</h2>
             <p>Este GPT está diseñado para ayudar a los QAs junior y de nivel medio a crear documentación completa y efectiva para proyectos de QA de software.</p>
         </section>
         <section>
