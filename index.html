@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Assistant</title>
+    <style>
+        /* Basic styling */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4; 
+            color: #333; 
+        }
+        header, footer { 
+            background: #0056b3; /* Base blue color */
+            color: #ffffff; 
+            padding: 10px 10%; /* Responsive padding */
+            text-align: center; 
+        }
+        main { 
+            padding: 20px 10%; /* Responsive padding */
+        }
+        section { 
+            margin-bottom: 20px; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 5px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; /* Rounded borders for inputs */
+        }
+        button { 
+            padding: 10px 20px; 
+            background: #007bff; /* Brighter blue */
+            color: white; 
+            border: none; 
+            border-radius: 4px; /* Rounded borders for button */
+            cursor: pointer; 
+            transition: background-color 0.3s; /* Smooth transition for hover */
+        }
+        button:hover { 
+            background: #0056b3; /* Slightly darker blue on hover */
+        }
+         h2 { /* Adding spacing and color to headings */
+            color: #0056b3;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Chatbot to assist you in your QA process</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome</h2>
+            <p>Welcome to your Automated Testing Assistant! Our chatbot is specially designed to guide you through every step of the software testing process, from project planning to execution. Utilizing the latest AI technology, it offers real-time assistance in designing test plans, generating test cases, and managing test executions. With an intuitive interface and adaptive functionality, our chatbot ensures meticulous attention to detail for top-quality software delivery. Elevate your testing efficiency and project quality effortlessly with our chatbot today.</p>
+        </section>
+<section>
+            <h2>Using the Chatbot:</h2>
+            <ul>
+                <li><strong>Initiate Conversation:</strong> Type your question or request into the chat input area regarding test plans, generating test cases, or specific testing queries and click the 'Send' button to submit your query.</li>
+                <li><strong>Receive Guidance:</strong> The chatbot will process your input and provide a detailed response tailored to your needs.</li>
+                <li><strong>Follow-up Questions:</strong> You can continue the conversation by asking follow-up questions for further details or clarification.</li>
+            </ul>
+</section>
+<section>
+            <h2>ChatGPT Chatbot</h2>
+            <input type="text" id="userInput" placeholder="Please write your question..." />
+            <button onclick="sendMessage()">Send</button>
+            <p id="response"></p>
+            <script>
+                async function sendMessage() {
+                    const input = document.getElementById('userInput').value;
+                    const responseContainer = document.getElementById('response');
+                    try {
+                        const response = await fetch('/get-response', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ input: input })
+                        });
+                        const data = await response.json();
+                        responseContainer.textContent = 'Response: ' + data.message;
+                    } catch (error) {
+                        responseContainer.textContent = 'Error: ' + error;
+                    }
+                }
+            </script>
+        </section>
+        <section>
+
+        
+            <h2>Advanced Features:</h2>
+            <ul>
+                <li><strong>Multi-step Processes:</strong> The chatbot can guide you through complex testing tasks, explaining each step of the process.</li>
+                <li><strong>Custom Test Suggestions:</strong> Based on your project's requirements, the chatbot will suggest customized test cases and scenarios.</li>
+                <li><strong>Troubleshooting Assistance:</strong> If you encounter issues, the chatbot can offer troubleshooting steps and diagnose common problems.</li>
+            </ul>
+            <h2>Tips for Effective Interaction:</h2>
+            <ul>
+                <li><strong>Be Specific:</strong> Provide clear and detailed information to help the chatbot understand your needs and give accurate advice.</li>
+                <li><strong>Use Keywords:</strong> Employ keywords related to your testing needs, such as "regression testing" or "load testing", to guide the chatbot more effectively.</li>
+                <li><strong>Feedback:</strong> After your interaction, you may be prompted to provide feedback, which helps improve the chatbot's performance.</li>
+            </ul>
+        </section>
+        
+    </main>
+    <footer>
+        <p>&copy; 2024 Edier Camacho</p>
+    </footer>
+</body>
+</html>
+
