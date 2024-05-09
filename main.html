@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -28,13 +27,33 @@
             <p>Este GPT puede generar planes de prueba, estrategias, casos de prueba y documentación de regresión necesaria para tu proyecto de software.</p>
         </section>
         <section>
-            <h2>Interactúa con el GPT</h2>
-            <form>
-                <label for="projectDetails">Detalles del Proyecto:</label>
-                <textarea id="projectDetails" name="projectDetails" rows="4" placeholder="Describe tu proyecto aquí..."></textarea>
-                <button type="button">Generar Documentación</button>
+            <h2>ChatGPT Chatbot</h2>
+    <input type="text" id="userInput" placeholder="Escribe algo..." />
+    <button onclick="sendMessage()">Enviar</button>
+    <p id="response"></p>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('userInput').value;
+            const responseContainer = document.getElementById('response');
+            try {
+                const response = await fetch('/get-response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ input: input })
+                });
+                const data = await response.json();
+                responseContainer.textContent = 'Respuesta: ' + data.message;
+            } catch (error) {
+                responseContainer.textContent = 'Error: ' + error;
+            }
+        }
+    </script>
             </form>
         </section>
+        
     </main>
     <footer>
         <p>&copy; 2024 Tu Nombre o Compañía</p>
