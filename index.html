@@ -87,7 +87,7 @@
                     const input = document.getElementById('userInput').value;
                     const responseContainer = document.getElementById('response');
                     try {
-                        const response = await fetch('/get-response', {
+                        const response = await fetch('http://localhost:3000/get-response', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
